@@ -5,6 +5,7 @@ import org.example.functionalInterface.MyOwnPredicateFunctionalInterface;
 import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class PredicateFunctionalInterface {
@@ -30,6 +31,7 @@ public class PredicateFunctionalInterface {
         System.out.println(orPredicate.test("abc"));
         System.out.println(orPredicate.test("hello"));
         System.out.println(orPredicate.test("world!"));
+
 
         // Question 2
         List<Integer> predicateIntergerList = List.of(1, 10, 15, 20);
@@ -57,11 +59,9 @@ public class PredicateFunctionalInterface {
         // Lambda expression
         Predicate<Character> characterPredicate = Character::isAlphabetic;
 
-
         // My own Functional interface testing
         MyOwnPredicateFunctionalInterface myOwnPredicateFunctionalInterface = (String::equalsIgnoreCase);
-        System.out.println("My ownPredicateFunction : "+myOwnPredicateFunctionalInterface.test("lawrence", "Jenistan"));
-
+        System.out.println("My ownPredicateFunction : "+myOwnPredicateFunctionalInterface.test("test", "string"));
 
         BiPredicate<String, String> biPredicate = String::equalsIgnoreCase;
 
