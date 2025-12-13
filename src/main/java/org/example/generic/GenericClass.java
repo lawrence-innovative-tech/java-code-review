@@ -25,9 +25,9 @@ class SubTypeStartWithNumber extends StartWithNumber {
 public class GenericClass {
 
     public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-//        GenericClass.BoundWildCardGeneric<StartWithNumber> wailCardVariable =
-//                new BoundWildCardGeneric<>(new StartWithNumber(), StartWithNumber.class);
-//        wailCardVariable.validateWildCard();
+        GenericClass.BoundWildCardGeneric<StartWithNumber> wailCardVariable =
+                new BoundWildCardGeneric<>(new StartWithNumber(), StartWithNumber.class);
+        wailCardVariable.validateWildCard();
 //
 //        GenericClass.BoundWildCardGeneric<TinyUrl> wailCardVariable1 =
 //                new BoundWildCardGeneric<>(new TinyUrl());
@@ -48,8 +48,6 @@ public class GenericClass {
 
         List<Integer> integersList = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         List<Double> doubleList = List.of(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
-        printSumOfNumbers(integersList);
-        printSumOfNumbers(doubleList);
 
         /**
          * It will throw exception, it isn't extends Number class. for extends class
@@ -57,10 +55,16 @@ public class GenericClass {
         List<StartWithNumber> startWithNumberList =
                 List.of(new StartWithNumber(), new SubTypeStartWithNumber());
 //        printSumOfNumbers(startWithNumberList);
+        printSumOfNumbers(integersList);
+        printSumOfNumbers(doubleList);
 
-        printSumOfNumbersOfSuper(Collections.singletonList(startWithNumberList));
-        printSumOfNumbersOfSuper(Collections.singletonList(integersList));
-        printSumOfNumbersOfSuper(Collections.singletonList(doubleList));
+//        printSumOfNumbersOfSuper(Collections.singletonList(startWithNumberList));
+//        printSumOfNumbersOfSuper(new ArrayList<>(integersList));
+//        printSumOfNumbersOfSuper(new ArrayList<>(doubleList));
+//        printSumOfNumbersOfSuper(new ArrayList<Serializable>(List.of(Serializable.class)));
+
+        SubTypeStartWithNumber startWithNumber = new SubTypeStartWithNumber();
+        printSumOfNumbersOfSuper(new ArrayList<TinyUrl>(List.of(startWithNumber)));
     }
 
     private static void printSumOfNumbers(List<? extends Number> numbers) {
@@ -69,7 +73,10 @@ public class GenericClass {
         }
     }
 
-    private static void printSumOfNumbersOfSuper(List<? super Number> numbers) {
+    private static void printSumOfNumbersOfSuper(List<? super TinyUrl> numbers) {
+        System.out.println("----------");
+//        numbers.add(25);
+//        numbers.add(11111.4);
         for (Object number: numbers){
             System.out.println("super number " + number);
         }
@@ -92,6 +99,8 @@ public class GenericClass {
         list.add(new SubTypeStartWithNumber());
 //        list.add(new TinyUrl());
         list.add(new StartWithString());
+
+
         Number num;
         Integer num2 = 9;
         Double num3 = 2.4d;
