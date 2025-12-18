@@ -19,6 +19,11 @@ class Employee {
     public String getDepartment() { return department; }
     public double getSalary() { return salary; }
     public LocalDate getHireDate() { return hireDate; }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
     @Override public String toString() { return name + " (" + id + ")"; }
 }
 

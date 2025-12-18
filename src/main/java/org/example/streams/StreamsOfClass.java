@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
+// import java.util.stream.Gatherer;
 
 public class StreamsOfClass {
 
@@ -14,14 +15,15 @@ public class StreamsOfClass {
         // StreamsOfClass.mountStreams();
         StreamsOfClass.emptyStreams();
 
-        Gatherer<Integer, Integer, Integer> evenCounter = Gatherer.ofSequential(
-                (Supplier<Integer>) () -> 0, // Initial state: count = 0
-                (Integer state, Integer elem, BiConsumer<Integer> downstream) -> { // Integrator
-                    if (elem % 2 == 0) {
-                        state++; // Update state
-                        downstream.accept(state); // Emit running count of evens
-                    }
-                });
+        // Gatherer<Integer, Integer, Integer> evenCounter = Gatherer.ofSequential(
+        // (Supplier<Integer>) () -> 0, // Initial state: count = 0
+        // (Integer state, Integer elem, BiConsumer<Integer> downstream) -> { //
+        // Integrator
+        // if (elem % 2 == 0) {
+        // state++; // Update state
+        // downstream.accept(state); // Emit running count of evens
+        // }
+        // });
 
     }
 
