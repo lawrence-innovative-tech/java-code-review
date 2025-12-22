@@ -1,9 +1,7 @@
 package org.example.streams;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
+import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -50,6 +48,7 @@ public class CollectorClass {
             return name + "  " + salary;
         }
     }
+
     public static void customCollectorSecondLargestNumber() {
 
         List<Integer> numbers = Arrays.asList(5, 2, 8, 1, 9, 3, 7);
@@ -88,7 +87,10 @@ public class CollectorClass {
                 (queue1, queue2) -> {});
 //        largestEmployeeList.stream().peek(System.out::println);
 
-        System.out.println(largestEmployeeList);
+//        System.out.println(largestEmployeeList);
+        while (!largestEmployeeList.isEmpty()) {
+            System.out.println(largestEmployeeList.poll());
+        }
 //        Using reduce function
 
 //        employees.stream().reduce(new PriorityQueue<Employee>(),
@@ -100,6 +102,11 @@ public class CollectorClass {
 
         Employee highestEmployee = employees.stream().min(Comparator.comparingLong(Employee::getSalary)).orElse(null);
         System.out.println(highestEmployee);
+
+
+        Collector<Employee, ?, List<Employee>> test = Collectors.toCollection(ArrayList::new);
+        Supplier<?> supplier = test.supplier();
+
     }
 
 }
